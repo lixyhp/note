@@ -23,3 +23,9 @@ mysql的锁分为三个级别：行级锁，页级锁，表级锁。对于平时
 InnoDB并不能完全自动检测到死锁，这需要通过设置锁等待超时参数innodb_lock_wait_timeout来解决。
 
 Replication
+
+Mysql服务器之间的主从同步是基于binlog机制，从服务器通过读取和执行binlog来保持和主服务器的数据一致。若从库执行报错会中断，需要跳过该事务。
+
+binlog_format来指定要使用的格式：
+SBR：基于Statement，引起主从不一致情形较多，尤其Trigger会导致从库执行出错。
+RBR：基于Row，binlog较大，可能引起延迟。
