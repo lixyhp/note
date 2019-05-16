@@ -35,6 +35,12 @@ SBR：基于Statement，引起主从不一致情形较多，尤其Trigger会导�
 RBR：基于Row，binlog较大，可能引起延迟。
 MBR：Mixed。
 
+** Cluster **
+
+管理节点（MGM）：管理MySQLCluster内的节点，如提供配置数据，并停止节点，运行备份等。应在启动其他节点之前启动。用命令“ndb_mgmd”启动；
+数据节点（NDB）：用于保存Cluster的数据，数据节点的数目与副本的数目相关，是片段的倍数。使用命令“ndb”启动；
+SQL节点：访问Cluster数据的节点，客户端节点是使用NDB Cluster存储引擎的传统MySQL服务器。用命令“mysqld-ndbcluster”启动；
+
 ** Merge engine ** 
 
 水平分表可优化性能。
