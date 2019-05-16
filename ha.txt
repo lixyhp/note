@@ -1,4 +1,4 @@
-** Heartbeat **
+** heartbeat **
 
 通过修改heartbeat的配置文件，可以指定一台heartbeat服务器作为主服务器，另一台自动成为热备服务器。
 在热备服务器上面配置heartbeat守护程序来监听来自主服务器的心跳信息。
@@ -23,3 +23,18 @@ Keepalived高可用服务对之间的故障切换转移，是通过 VRRP (Virtua
 
 VRRP,全称Virtual Router Redundancy Protocol ,中文名为虚拟路由冗余协议，
 VRRP的出现就是为了解决静态踣甶的单点故障问题，VRRP是通过一种竞选机制来将路由的任务交给某台VRRP路由器的。
+
+** lvs **
+
+LVS可以实现负载均衡，但是不能够进行健康检查，比如一个rs出现故障，LVS仍然会把请求转发给故障的rs服务器，这样就会导致请求的无效性。
+keepalive软件可以进行健康检查，而且能同时实现 LVS的高可用性，解决LVS单点故障的问题。
+
+1. 当用户向负载均衡调度器（Director Server）发起请求，调度器将请求发往至内核空间。
+2. PREROUTING链首先会接收到用户请求，判断目标IP确定是本机IP，将数据包发往INPUT链。
+3. IPVS是工作在INPUT链上的，当用户请求到达INPUT时，IPVS会将用户请求和自己已定义好的集群服务进行比对，
+   如果用户请求的就是定义的集群服务，那么此时IPVS会强行修改数据包里的目标IP地址及端口，并将新的数据包发往POSTROUTING链。
+4. POSTROUTING链接收数据包后发现目标IP地址刚好是自己的后端服务器，那么此时通过选路，将数据包最终发送给后端的服务器。
+
+** haproxy **
+
+HAProxy提供了L4(TCP)和L7(HTTP)两种负载均衡能力。
