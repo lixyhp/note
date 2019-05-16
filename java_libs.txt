@@ -1,0 +1,35 @@
+** Spring **
+
+核心是控制反转（IoC / Inversion of Control）和面向切面（AOP / Aspect Oriented Programming）。
+自从Spring 2.5版本发布后，由于支持注解配置，易用性有了大幅度的提高。
+
+IoC反向控制、控制反转。对象不需要主动去查找依赖类的实例。而是由其它应用给它注入。
+Aop实现调用某个方法之前或/和之后，自动执行一系列自定义的语句。
+
+** Struts **
+
+核心组件就是Action、拦截器等，Struts2框架使用包来管理Action和拦截器等。每个包就是多个Action、多个拦截器、多个拦截器引用的集合。
+
+** Jsoup **
+
+jsoup is a Java library for working with real-world HTML. 
+It provides a very convenient API for extracting and manipulating data, using the best of DOM, CSS, and jquery-like methods.
+
+** FreeMarker **
+
+基于模板生成文本输出的通用工具。
+
+** Velocity **
+
+使用模板语言（template language）来引用由java代码定义的对象。
+
+** MyBatis **
+
+支持定制化SQL、存储过程以及高级映射的优秀的持久层框架。
+避免了几乎所有的 JDBC 代码和手工设置参数以及抽取结果集。
+MyBatis使用简单的 XML 或注解来配置和映射基本体，将接口和 Java 的 POJOs(Plain Old Java Objects,普通的 Java对象)映射成数据库中的记录。
+
+** Quartz **
+
+开源的作业调度框架，能够用它来为执行一个作业而创建简单的或复杂的调度，支持多种表达式。
+
