@@ -1,0 +1,25 @@
+** Heartbeat **
+
+通过修改heartbeat的配置文件，可以指定一台heartbeat服务器作为主服务器，另一台自动成为热备服务器。
+在热备服务器上面配置heartbeat守护程序来监听来自主服务器的心跳信息。
+如果在规定时间内，无法监听到心跳信息，那么就启动故障转移，取得主服务器上的相关资源的所有权，
+接替主服务器继续不间断的提供服务，从而达到资源以及服务高可用的目的。
+heartbeat还支持主主模式，及两台服务器互为主备。一般故障切换时间在5~20s之间。 
+
+ha.cf      参数配置文件  配置基本参数
+authkey    认证文件
+haresource 资源配置文件  启动ip脚本程序配置文件
+
+** keepalived **
+
+Keepalived高可用服务对之间的故障切换转移，是通过 VRRP (Virtual Router Redundancy Protocol ,虚拟路由器冗余协议）来实现的。
+
+在Keepalived服务正常工作时：
+   主Master节点会不断地向备节点发送（多播的方式）心跳消息，用以告诉备Backup节点自己还活着。
+当主Master节点发生故障时：
+   就无法发送心跳消息，备节点也就因此无法继续检测到来自主Master节点的心跳了，于是调用自身的接管程序，接管主Master节点的IP资源及服务。
+而当主Master节点恢复时：
+   备Backup节点又会释放主节点故障时自身接管的IP资源及服务，恢复到原来的备用角色。
+
+VRRP,全称Virtual Router Redundancy Protocol ,中文名为虚拟路由冗余协议，
+VRRP的出现就是为了解决静态踣甶的单点故障问题，VRRP是通过一种竞选机制来将路由的任务交给某台VRRP路由器的。
