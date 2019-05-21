@@ -11,9 +11,11 @@
 - 注册error handler错误处理方法。
 - 配置应用主体属性。
 - 调用init() 初始化，该函数会调用 bootstrap() 运行引导启动组件。
+
 入口脚本调用yii\base\Application::run()运行应用主体:
 - 触发EVENT_BEFORE_REQUEST事件。
 - 处理请求：解析请求 路由 和相关参数；创建路由指定的模块、控制器和动作对应的类，并运行动作。
 - 触发 EVENT_AFTER_REQUEST 事件。
 - 发送响应到终端用户。
+
 入口脚本接收应用主体传来的退出状态并完成请求的处理。
