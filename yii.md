@@ -19,3 +19,5 @@
 入口脚本接收应用主体传来的退出状态并完成请求的处理。
 
 ## Autoload
+
+spl_autoload_register 注册给定的函数作为 __autoload 的实现。
